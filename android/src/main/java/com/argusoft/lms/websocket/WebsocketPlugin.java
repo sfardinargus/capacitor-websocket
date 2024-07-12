@@ -12,11 +12,27 @@ public class WebsocketPlugin extends Plugin {
     private Websocket implementation = new Websocket();
 
     @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
+    public void connect(PluginCall call) {
+        String url = call.getString("url");
+        JSObject socketConfig = call.getObject("socketConfig");
+        implementation.connect(url, socketConfig, call);
+    }
 
-        JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
-        call.resolve(ret);
+    @PluginMethod
+    public void disconnect(PluginCall call) {
+        implementation.disconnect(call);
+    }
+
+    @PluginMethod
+    public void on(PluginCall call) {
+        String event = call.getString("event");
+        implementation.on(event, call);
+    }
+
+    @PluginMethod
+    public void emit(PluginCall call) {
+        String event = call.getString("event");
+        JSObject data = call.getObject("data");
+        implementation.emit(event, data, call);
     }
 }

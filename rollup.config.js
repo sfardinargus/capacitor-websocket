@@ -1,3 +1,6 @@
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+
 export default {
   input: 'dist/esm/index.js',
   output: [
@@ -7,6 +10,7 @@ export default {
       name: 'capacitorWebsocket',
       globals: {
         '@capacitor/core': 'capacitorExports',
+        'socket.io-client': 'io'
       },
       sourcemap: true,
       inlineDynamicImports: true,
@@ -18,5 +22,9 @@ export default {
       inlineDynamicImports: true,
     },
   ],
-  external: ['@capacitor/core'],
+  external: ['@capacitor/core', 'socket.io-client'],
+  plugins: [
+    resolve(),
+    commonjs()
+  ]
 };

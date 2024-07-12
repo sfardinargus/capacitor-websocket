@@ -13,24 +13,62 @@ npx cap sync
 
 <docgen-index>
 
-* [`echo(...)`](#echo)
+* [`connect(...)`](#connect)
+* [`disconnect()`](#disconnect)
+* [`on(...)`](#on)
+* [`emit(...)`](#emit)
 
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
-### echo(...)
+### connect(...)
 
 ```typescript
-echo(options: { value: string; }) => Promise<{ value: string; }>
+connect(options: { url: string; socketConfig?: any; }) => Promise<void>
 ```
 
-| Param         | Type                            |
-| ------------- | ------------------------------- |
-| **`options`** | <code>{ value: string; }</code> |
+| Param         | Type                                              |
+| ------------- | ------------------------------------------------- |
+| **`options`** | <code>{ url: string; socketConfig?: any; }</code> |
 
-**Returns:** <code>Promise&lt;{ value: string; }&gt;</code>
+--------------------
+
+
+### disconnect()
+
+```typescript
+disconnect() => Promise<void>
+```
+
+--------------------
+
+
+### on(...)
+
+```typescript
+on(event: string, callback: (data: any) => void) => Promise<void>
+```
+
+| Param          | Type                                |
+| -------------- | ----------------------------------- |
+| **`event`**    | <code>string</code>                 |
+| **`callback`** | <code>(data: any) =&gt; void</code> |
+
+--------------------
+
+
+### emit(...)
+
+```typescript
+emit(event: string, ...args: any[]) => Promise<void>
+```
+
+| Param       | Type                |
+| ----------- | ------------------- |
+| **`event`** | <code>string</code> |
+| **`args`**  | <code>any[]</code>  |
 
 --------------------
 
